@@ -208,6 +208,7 @@ class Player extends MassedBeing implements BeingVar {
       if(nKey == POCodes.Key.L) {
         // Create Rasengan
         if(!isRasenganActive()){
+          println("about to create rasengan"); //<>//
           setRasenganActive(true);
           rasengan = player2Rasengan = new Rasengan(getRasenganPositionX(), getRasenganPostionY(), Rasengan.PLAYER_2, direction);
           rasengan.setOwner(this);

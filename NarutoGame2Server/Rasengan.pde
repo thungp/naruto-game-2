@@ -6,7 +6,7 @@ class Rasengan  extends MassedBeing implements BeingVar{
   public final static float RASENGAN_WIDTH = 16;
   public final static float RASENGAN_HEIGHT = 36;
   final static float RASENGAN_SPEED = 150;
-  final static int RASENGAN_LIFE = 2; // controls how many seconds Rasengan should stay alive before dissipating.
+  final static int RASENGAN_LIFE = 2; // controls how many seconds (roughly, mulplied by frame rate) Rasengan should stay alive before dissipating.
   
   SpriteFrame sprite01;
 

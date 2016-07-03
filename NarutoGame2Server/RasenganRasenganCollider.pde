@@ -9,8 +9,8 @@ class RasenganRasenganCollider extends GenericMassedCollider<Rasengan, Rasengan>
   void handle(Rasengan r1, Rasengan r2) {
     Player player1 = r1.getOwner();
     Player player2 = r2.getOwner();
-    player1.setRasenganActive(false);
-    player2.setRasenganActive(false);
+    player1.setRasenganActive(false); // allow player 1 to fire another Rasengan
+    player2.setRasenganActive(false); // allow player 2 to fire another Rasengan
     world.delete(r1);
     world.delete(r2);
     //super.handle(player, rasengan); // have GenericMassedCollider do the rest
