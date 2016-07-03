@@ -61,6 +61,7 @@ class Rasengan extends MassedBeing {
   }
   
   void draw() {
+    
     if(playerNum == PLAYER_1) {
       scale(1.0); // original. 0.2, if you make it .9, needto translate -70, to alight character to platform
                   // for nartuo make 2.0, make translate -20, on y, 
@@ -93,9 +94,7 @@ class Rasengan extends MassedBeing {
   
   // we use update() to apply gravity
   void update() {
-    addForce(new PVector(0, -GRAVITY * getMass(), 0));
-    if(abs(getVelocity().y) >= 5)
-      sprite.pause();
+
   }
   
   public int getWidth(){
