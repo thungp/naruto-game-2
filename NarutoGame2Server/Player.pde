@@ -24,6 +24,8 @@ class Player extends MassedBeing implements BeingVar {
   int direction = FACING_RIGHT; // the direction the player is facing
   boolean jumped = false;       // whether the player can jump
   
+  boolean rasenganActive = false;
+  
   AnimatedSprite sprite;
   int animIndex;
   
@@ -159,12 +161,18 @@ class Player extends MassedBeing implements BeingVar {
       }
       if(nKey == POCodes.Key.G) {
         // Create Rasengan
-        rasengan = player1Rasengan = new Rasengan(getRasenganPositionX(), getRasenganPostionY(), Rasengan.PLAYER_1, direction);
-        world.register(player1Rasengan, true);
-        if(this == player) {
-          world.register(player2, rasengan, playerRasenganCollider);
+        if(!isRasenganActive()){
+          setRasenganActive(true);
+          rasengan = player1Rasengan = new Rasengan(getRasenganPositionX(), getRasenganPostionY(), Rasengan.PLAYER_1, direction);
+          rasengan.setOwner(this);
+          world.register(player1Rasengan, true);
+          if(this == player) {
+            world.register(player2, rasengan, playerRasenganCollider);
+          } else {
+            world.register(player, rasengan, playerRasenganCollider);
+          }
         } else {
-          world.register(player, rasengan, playerRasenganCollider);
+         // don't do anything, only allow one rasengan active at a time. 
         }
         
         world.getPostOffice().sendFloat("/" + SYSTEM_NAME + "/" + "setL", 1.0);
@@ -199,12 +207,18 @@ class Player extends MassedBeing implements BeingVar {
       
       if(nKey == POCodes.Key.L) {
         // Create Rasengan
-        rasengan = player2Rasengan = new Rasengan(getRasenganPositionX(), getRasenganPostionY(), Rasengan.PLAYER_2, direction);
-        world.register(player2Rasengan, true);
-        if(this == player) {
-          world.register(player2, rasengan, playerRasenganCollider);
+        if(!isRasenganActive()){
+          setRasenganActive(true);
+          rasengan = player2Rasengan = new Rasengan(getRasenganPositionX(), getRasenganPostionY(), Rasengan.PLAYER_2, direction);
+          rasengan.setOwner(this);
+          world.register(player2Rasengan, true);
+          if(this == player) {
+            world.register(player2, rasengan, playerRasenganCollider);
+          } else {
+            world.register(player, rasengan, playerRasenganCollider);
+          }
         } else {
-          world.register(player, rasengan, playerRasenganCollider);
+           // don't allow more than one rasengan at a time. 
         }
         
         world.getPostOffice().sendFloat("/" + SYSTEM_NAME + "/" + "setL", 1.0);
@@ -274,6 +288,14 @@ class Player extends MassedBeing implements BeingVar {
       getVelocity().x = 0;
       sprite.pause();
     }
+  }
+  
+  public boolean isRasenganActive() {
+    return rasenganActive; 
+  }
+  
+  public void setRasenganActive(boolean val){
+    rasenganActive = val;
   }
   
 }

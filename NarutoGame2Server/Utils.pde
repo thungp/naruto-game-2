@@ -41,7 +41,7 @@ PImage tintImage(PImage p, float redRatio, float greenRatio, float blueRatio, fl
     a *= alphaRatio;
     p2.pixels[i] = color(r, g, b, a);
   }
-  p2.updatePixels();
+  //p2.updatePixels();
   return p2;
 } 
 

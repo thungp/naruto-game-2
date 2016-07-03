@@ -10,7 +10,7 @@ class Rasengan  extends MassedBeing implements BeingVar{
   
   SpriteFrame sprite01;
 
-  
+  Player owner;
   
   // constants used to indicate the direction the Rasengan is traveling
   //final static int FACING_LEFT = 1;
@@ -117,7 +117,12 @@ class Rasengan  extends MassedBeing implements BeingVar{
     rasenganLifeTimer--;
     println(rasenganLifeTimer);
     if(rasenganLifeTimer < 0){
-      world.delete(this);
+      if(owner != null){
+        owner.setRasenganActive(false); 
+        world.delete(this);
+      } else{
+        println("We have a problem. owner was set to null, when trying to remove rasengan from world due to rasengan expiring. Should never see this."); 
+      }
     }
   }
   
@@ -248,5 +253,13 @@ class Rasengan  extends MassedBeing implements BeingVar{
     
   }
   
+  
+  public void setOwner(Player player){
+    owner = player; 
+  }
+  
+  public Player getOwner(){
+    return owner;
+  }
   
 }
