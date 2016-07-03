@@ -22,3 +22,8 @@ PImage transparentizeBackground(PImage p, color col) {
   return p2;
 }
 
+
+interface BeingVar {
+  final static int FACING_LEFT = 1;
+  final static int FACING_RIGHT = 2;
+}

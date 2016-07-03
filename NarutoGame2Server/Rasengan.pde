@@ -1,7 +1,7 @@
 /**
  * Represents the player
  */
-class Rasengan extends MassedBeing {
+class Rasengan  extends MassedBeing implements BeingVar{
   
   public final static float RASENGAN_WIDTH = 16;
   public final static float RASENGAN_HEIGHT = 36;
@@ -13,8 +13,8 @@ class Rasengan extends MassedBeing {
   
   
   // constants used to indicate the direction the Rasengan is traveling
-  final static int FACING_LEFT = 1;
-  final static int FACING_RIGHT = 2;
+  //final static int FACING_LEFT = 1;
+  //final static int FACING_RIGHT = 2;
   
   // contant used to indicate player 1 or Player 2's Rasengan
   public final static int PLAYER_1 = 1;
@@ -30,7 +30,7 @@ class Rasengan extends MassedBeing {
   
   int playerNum;
   
-  Rasengan(float x, float y, int player) {
+  Rasengan(float x, float y, int player, int playerDirection) {
     super(new HRectangle(HermesMath.makeVector(x, y), RASENGAN_WIDTH, RASENGAN_HEIGHT), HermesMath.zeroVector(), 1.0f, 1.0f);
     playerNum = player;
     
@@ -44,6 +44,13 @@ class Rasengan extends MassedBeing {
     }
     sprite.setActiveAnimation(animIndex);
     sprite.unpause();
+    if(playerDirection == FACING_RIGHT) {
+     // add some default velocity in the correct direction heading right 
+     getVelocity().x = RASENGAN_SPEED;
+    } else {
+      // add some default velocity in the correct direction heading left.
+     getVelocity().x = -RASENGAN_SPEED; 
+    }
   }
   
   Animation getRasenganLaunchAnimation(){

@@ -1,18 +1,18 @@
 /**
  * Represents the player
  */
-class Player extends MassedBeing {
+class Player extends MassedBeing implements BeingVar {
   
   final static float PLAYER_WIDTH = 50;
-  final static float PLAYER_HEIGHT = 45;
+  final static float PLAYER_HEIGHT = 39;
   final static float PLAYER_SPEED = 150;
   SpriteFrame sprite01;
 
   Rasengan rasengan;
   
   // constants used to indicate the direction the player is facing
-  final static int FACING_LEFT = 1;
-  final static int FACING_RIGHT = 2;
+  //final static int FACING_LEFT = 1;
+  //final static int FACING_RIGHT = 2;
   
   // contant used to indicate player 1 or Player 2
   public final static int PLAYER_1 = 1;
@@ -157,7 +157,7 @@ class Player extends MassedBeing {
       }
       if(nKey == POCodes.Key.G) {
         // Create Rasengan
-        rasengan = player1Rasengan = new Rasengan(getRasenganPositionX(), getRasenganPostionY(), Rasengan.PLAYER_1);
+        rasengan = player1Rasengan = new Rasengan(getRasenganPositionX(), getRasenganPostionY(), Rasengan.PLAYER_1, direction);
         world.register(player1Rasengan, true);
         world.getPostOffice().sendFloat("/" + SYSTEM_NAME + "/" + "setL", 1.0);
       }
