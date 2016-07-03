@@ -13,6 +13,15 @@ public class SpriteFrame{
     return sprite.get(x, y, w, h);
   }
   
+  /*
+    Takes in a ratio to multiply the individual color values of the pixels of the sprite image.
+  */
+  void tintSpriteFrame(float r, float g, float b, float a){
+   
+   sprite = tintImage(sprite, r, g, b, a);
+   
+  }
+  
   public ArrayList<PImage> getFrameStripByRectangle(int topLeftX, int topLeftY, int bottomRightX, int bottomRightY, int numFrames) {
      
     ArrayList<PImage> frameArrayList = new ArrayList();

@@ -6,7 +6,7 @@ class Rasengan  extends MassedBeing implements BeingVar{
   public final static float RASENGAN_WIDTH = 16;
   public final static float RASENGAN_HEIGHT = 36;
   final static float RASENGAN_SPEED = 150;
-  final static int RASENGAN_LIFE = 3; // controls how many seconds Rasengan should stay alive before dissipating.
+  final static int RASENGAN_LIFE = 2; // controls how many seconds Rasengan should stay alive before dissipating.
   
   SpriteFrame sprite01;
 
@@ -23,7 +23,7 @@ class Rasengan  extends MassedBeing implements BeingVar{
   
   int direction = FACING_RIGHT; // the direction the Rasengan is traveling 
   
-  int rasenganLife = RASENGAN_LIFE ; // in seconds
+  int rasenganLifeTimer = 0 ; // in seconds
   
   AnimatedSprite sprite;
   int animIndex;
@@ -40,7 +40,7 @@ class Rasengan  extends MassedBeing implements BeingVar{
     if(playerNum == PLAYER_1) {
       animIndex = sprite.addAnimation(getRasenganLaunchAnimation());
     } else {
-      animIndex = sprite.addAnimation(getWalkAnimation());
+      animIndex = sprite.addAnimation(getPlayer2RasenganLaunchAnimation());
     }
     sprite.setActiveAnimation(animIndex);
     sprite.unpause();
@@ -51,10 +51,18 @@ class Rasengan  extends MassedBeing implements BeingVar{
       // add some default velocity in the correct direction heading left.
      getVelocity().x = -RASENGAN_SPEED; 
     }
+    rasenganLifeTimer = RASENGAN_LIFE * 60;
   }
   
   Animation getRasenganLaunchAnimation(){
     sprite01  = new SpriteFrame("Naruto_04.png");
+    java.util.ArrayList narutoWalkArrayList = sprite01.getFrameStripByRectangle(0, 4150, 500, 4220, 7);
+    Animation walkAnim = new Animation(narutoWalkArrayList, 200);
+    return walkAnim;
+  }
+  Animation getPlayer2RasenganLaunchAnimation(){
+    sprite01  = new SpriteFrame("Naruto_04.png");
+    sprite01.tintSpriteFrame(5.0, .8, .8, 1);
     java.util.ArrayList narutoWalkArrayList = sprite01.getFrameStripByRectangle(0, 4150, 500, 4220, 7);
     Animation walkAnim = new Animation(narutoWalkArrayList, 200);
     return walkAnim;
@@ -101,7 +109,16 @@ class Rasengan  extends MassedBeing implements BeingVar{
   
   // we use update() to apply gravity
   void update() {
-
+    // check on rasengan Life and remove if expired
+    updateObjectLifeAndRemoveAsNecessary();
+  }
+  
+  void updateObjectLifeAndRemoveAsNecessary(){
+    rasenganLifeTimer--;
+    println(rasenganLifeTimer);
+    if(rasenganLifeTimer < 0){
+      world.delete(this);
+    }
   }
   
   public int getWidth(){

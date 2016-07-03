@@ -18,6 +18,8 @@ class Player extends MassedBeing implements BeingVar {
   public final static int PLAYER_1 = 1;
   public final static int PLAYER_2 = 2;
   
+  // fudge factors
+  final int rasegnanDistance = 20;
   
   int direction = FACING_RIGHT; // the direction the player is facing
   boolean jumped = false;       // whether the player can jump
@@ -100,17 +102,17 @@ class Player extends MassedBeing implements BeingVar {
     int rasenganX = 0;
     if (direction == FACING_RIGHT) {
       if(rasengan != null) {
-        rasenganX = (int) (getX() + (getWidth()/2) + (rasengan.getWidth()/2));
+        rasenganX = (int) (getX() + (getWidth()/2) + (rasengan.getWidth()/2) - rasegnanDistance);
         println(" I want want to see this");
       } else {
-        rasenganX = (int) (getX() + (getWidth()/2) + (rasengan.RASENGAN_WIDTH/2));
+        rasenganX = (int) (getX() + (getWidth()/2) + (rasengan.RASENGAN_WIDTH/2) - rasegnanDistance);
         println(" I don't want to see this");
       }
     } else {
       if(rasengan != null) {
-        rasenganX = (int) (getX() - (getWidth()/2) - (rasengan.getWidth()/2));
+        rasenganX = (int) (getX() - (getWidth()/2) - (rasengan.getWidth()/2) + rasegnanDistance);
       } else {
-        rasenganX = (int) (getX() - (getWidth()/2) - (rasengan.RASENGAN_WIDTH/2));
+        rasenganX = (int) (getX() - (getWidth()/2) - (rasengan.RASENGAN_WIDTH/2) + rasegnanDistance);
       }
       
     }
@@ -159,6 +161,12 @@ class Player extends MassedBeing implements BeingVar {
         // Create Rasengan
         rasengan = player1Rasengan = new Rasengan(getRasenganPositionX(), getRasenganPostionY(), Rasengan.PLAYER_1, direction);
         world.register(player1Rasengan, true);
+        if(this == player) {
+          world.register(player2, rasengan, playerRasenganCollider);
+        } else {
+          world.register(player, rasengan, playerRasenganCollider);
+        }
+        
         world.getPostOffice().sendFloat("/" + SYSTEM_NAME + "/" + "setL", 1.0);
       }
       
@@ -188,6 +196,20 @@ class Player extends MassedBeing implements BeingVar {
         if(abs(getVelocity().y) <= 5) sprite.unpause();  
         world.getPostOffice().sendFloat("/" + SYSTEM_NAME + "/" + "setDOWN", 1.0);
       }
+      
+      if(nKey == POCodes.Key.L) {
+        // Create Rasengan
+        rasengan = player2Rasengan = new Rasengan(getRasenganPositionX(), getRasenganPostionY(), Rasengan.PLAYER_2, direction);
+        world.register(player2Rasengan, true);
+        if(this == player) {
+          world.register(player2, rasengan, playerRasenganCollider);
+        } else {
+          world.register(player, rasengan, playerRasenganCollider);
+        }
+        
+        world.getPostOffice().sendFloat("/" + SYSTEM_NAME + "/" + "setL", 1.0);
+      }
+      
       
     } else { // when a key is released, we stop the player
         if(nKey == POCodes.Key.D || nKey == POCodes.Key.A || nKey == POCodes.Key.LEFT || nKey == POCodes.Key.RIGHT) {

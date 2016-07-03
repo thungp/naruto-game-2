@@ -61,6 +61,10 @@ PlatformGroup platforms;
 Player player;
 Player player2;
 Rasengan player1Rasengan;
+Rasengan player2Rasengan;
+PlatformCollider platformCollider = new PlatformCollider(0);
+PlayerCollider playerCollider = new PlayerCollider(0);
+PlayerRasenganCollider playerRasenganCollider = new PlayerRasenganCollider(0);
 
 ///////////////////////////////////////////////////
 // PAPPLET

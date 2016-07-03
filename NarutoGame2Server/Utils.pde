@@ -22,6 +22,29 @@ PImage transparentizeBackground(PImage p, color col) {
   return p2;
 }
 
+// tints the referene passed in of a pImage.
+PImage tintImage(PImage p, float redRatio, float greenRatio, float blueRatio, float alphaRatio){
+ PImage p2;
+  p.loadPixels();
+  p2 = p.get();
+  p2.loadPixels();
+  int pLen = p2.pixels.length;
+  
+  for (int i = 0; i < pLen; i++) {
+    float r = red(p2.pixels[i]);
+    float g = green(p2.pixels[i]);
+    float b = blue(p2.pixels[i]);
+    float a = alpha(p2.pixels[i]); 
+    r *= redRatio;
+    g *= greenRatio;
+    b *= blueRatio;
+    a *= alphaRatio;
+    p2.pixels[i] = color(r, g, b, a);
+  }
+  p2.updatePixels();
+  return p2;
+} 
+
 
 interface BeingVar {
   final static int FACING_LEFT = 1;

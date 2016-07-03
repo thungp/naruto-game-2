@@ -50,15 +50,21 @@ class PlatformWorld extends World {
     po.subscribe(player2, "/NARUTO/setL");
   
     // make player collide with platforms
-    world.register(player, platforms, new PlatformCollider(0));
+    //world.register(player, platforms, new PlatformCollider(0));
+    world.register(player, platforms, platformCollider);
     
     // make player2 collide with platforms
-    world.register(player2, platforms, new PlatformCollider(0));
+    //world.register(player2, platforms, new PlatformCollider(0));
+    world.register(player2, platforms, platformCollider);
     
     //make player1 colledit with player2
-    world.register(player, player2, new PlayerCollider(0));
+    //world.register(player, player2, new PlayerCollider(0));
+    world.register(player, player2, playerCollider);
     
     //make player1 colledit with player2
-    world.register(player2, player, new PlayerCollider(0));
+    //world.register(player2, player, new PlayerCollider(0));
+    world.register(player2, player, playerCollider);
+    
+
   }
 }
