@@ -43,7 +43,7 @@ class Rasengan extends MassedBeing {
       animIndex = sprite.addAnimation(getWalkAnimation());
     }
     sprite.setActiveAnimation(animIndex);
-    sprite.pause();
+    sprite.unpause();
   }
   
   Animation getRasenganLaunchAnimation(){
