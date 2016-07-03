@@ -60,6 +60,7 @@ PostOffice po;
 PlatformGroup platforms;
 Player player;
 Player player2;
+Rasengan player1Rasengan;
 
 ///////////////////////////////////////////////////
 // PAPPLET

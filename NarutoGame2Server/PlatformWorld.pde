@@ -15,17 +15,24 @@ class PlatformWorld extends World {
     // set up the player
     player = new Player(0, 60, Player.PLAYER_1);
     player2 = new Player(170, 60, Player.PLAYER_2);
-    println("player created");
+    println("display rasengan for testing - a");
+    
+    
     world.register(player, true);
     world.register(player2, true);
+    
+    
     po.subscribe(player, POCodes.Key.W);
     po.subscribe(player, POCodes.Key.A);
     po.subscribe(player, POCodes.Key.S);
     po.subscribe(player, POCodes.Key.D);
+    po.subscribe(player, POCodes.Key.G);
+    
     po.subscribe(player2, POCodes.Key.UP);
     po.subscribe(player2, POCodes.Key.DOWN);
     po.subscribe(player2, POCodes.Key.LEFT);
     po.subscribe(player2, POCodes.Key.RIGHT);
+    po.subscribe(player2, POCodes.Key.L);
     
     
     //subscribe players to the Osc Messages
@@ -34,11 +41,13 @@ class PlatformWorld extends World {
     po.subscribe(player,  "/NARUTO/setS");
     po.subscribe(player,  "/NARUTO/setD");
     po.subscribe(player,  "/NARUTO/stop");
+    po.subscribe(player,  "/NARUTO/setG");
     po.subscribe(player2, "/NARUTO/setUP");
     po.subscribe(player2, "/NARUTO/setDOWN");
     po.subscribe(player2, "/NARUTO/setLEFT");
     po.subscribe(player2, "/NARUTO/setRIGHT");
     po.subscribe(player2, "/NARUTO/stop");
+    po.subscribe(player2, "/NARUTO/setL");
   
     // make player collide with platforms
     world.register(player, platforms, new PlatformCollider(0));

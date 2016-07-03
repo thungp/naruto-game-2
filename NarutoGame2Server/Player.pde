@@ -3,12 +3,12 @@
  */
 class Player extends MassedBeing {
   
-  final static float PLAYER_WIDTH = 16;
-  final static float PLAYER_HEIGHT = 36;
+  final static float PLAYER_WIDTH = 50;
+  final static float PLAYER_HEIGHT = 45;
   final static float PLAYER_SPEED = 150;
   SpriteFrame sprite01;
 
-  
+  Rasengan rasengan;
   
   // constants used to indicate the direction the player is facing
   final static int FACING_LEFT = 1;
@@ -67,7 +67,7 @@ class Player extends MassedBeing {
       // if the character is facing left, invert the image
       if(direction == FACING_LEFT) {
         scale(-1,1);  // I like how they use scale to revers direction.
-        translate(0, 0); // the 20 translate to the right helps with jumpiness when turning around.
+        translate(0, 0); // the dasd20 translate to the right helps with jumpiness when turning around.
       }
       image(sprite.animate(), 0, 0); // draw the current animation frame
     } else {
@@ -94,6 +94,39 @@ class Player extends MassedBeing {
     addForce(new PVector(0, -GRAVITY * getMass(), 0));
     if(abs(getVelocity().y) >= 5)
       sprite.pause();
+  }
+
+  int getRasenganPositionX() {
+    int rasenganX = 0;
+    if (direction == FACING_RIGHT) {
+      if(rasengan != null) {
+        rasenganX = (int) (getX() + (getWidth()/2) + (rasengan.getWidth()/2));
+        println(" I want want to see this");
+      } else {
+        rasenganX = (int) (getX() + (getWidth()/2) + (rasengan.RASENGAN_WIDTH/2));
+        println(" I don't want to see this");
+      }
+    } else {
+      if(rasengan != null) {
+        rasenganX = (int) (getX() - (getWidth()/2) - (rasengan.getWidth()/2));
+      } else {
+        rasenganX = (int) (getX() - (getWidth()/2) - (rasengan.RASENGAN_WIDTH/2));
+      }
+      
+    }
+   
+   return rasenganX; 
+  }
+  
+  int getRasenganPostionY() {
+   return (int) getY(); 
+  }
+  
+  public int getWidth(){
+    HShape shape = getShape();
+    HRectangle rectangle = shape.getBoundingBox();
+    int beingWidth =  (int) rectangle.getWidth();
+    return beingWidth;
   }
   
   void receive(KeyMessage m) {
@@ -122,6 +155,14 @@ class Player extends MassedBeing {
         if(abs(getVelocity().y) <= 5) sprite.unpause();  
         world.getPostOffice().sendFloat("/" + SYSTEM_NAME + "/" + "setS", 1.0);
       }
+      if(nKey == POCodes.Key.G) {
+        // Create Rasengan
+        rasengan = player1Rasengan = new Rasengan(getRasenganPositionX(), getRasenganPostionY(), Rasengan.PLAYER_1);
+        world.register(player1Rasengan, true);
+        world.getPostOffice().sendFloat("/" + SYSTEM_NAME + "/" + "setL", 1.0);
+      }
+      
+      
       
       // Player2
       if(nKey == POCodes.Key.RIGHT) {
