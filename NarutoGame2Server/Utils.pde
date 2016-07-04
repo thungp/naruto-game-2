@@ -1,4 +1,4 @@
-
+import processing.core.PApplet;
 
 // make background transparent
 // currently hard coded to look for green color only 
@@ -46,7 +46,11 @@ PImage tintImage(PImage p, float redRatio, float greenRatio, float blueRatio, fl
 } 
 
 
-interface BeingVar {
+
+public interface BeingVar {
   final static int FACING_LEFT = 1;
   final static int FACING_RIGHT = 2;
+  
+  
 }
+

@@ -7,8 +7,8 @@ class Rasengan  extends MassedBeing implements BeingVar{
   public final static float RASENGAN_HEIGHT = 36;
   final static float RASENGAN_SPEED = 150;
   final static int RASENGAN_LIFE = 2; // controls how many seconds (roughly, mulplied by frame rate) Rasengan should stay alive before dissipating.
+
   
-  SpriteFrame sprite01;
 
   Player owner;
   
@@ -38,9 +38,9 @@ class Rasengan  extends MassedBeing implements BeingVar{
     sprite = new AnimatedSprite();
     Animation anim = null;
     if(playerNum == PLAYER_1) {
-      animIndex = sprite.addAnimation(getRasenganLaunchAnimation());
+        animIndex = sprite.addAnimation(player1RasenganLaunchAnimation);  
     } else {
-      animIndex = sprite.addAnimation(getPlayer2RasenganLaunchAnimation());
+        animIndex = sprite.addAnimation(player2RasenganLaunchAnimation); // This is the path we want.
     }
     sprite.setActiveAnimation(animIndex);
     sprite.unpause();
@@ -54,26 +54,29 @@ class Rasengan  extends MassedBeing implements BeingVar{
     rasenganLifeTimer = RASENGAN_LIFE * 60;
   }
   
-  Animation getRasenganLaunchAnimation(){
+
+  /*
+  public static Animation getRasenganLaunchAnimation(){
     sprite01  = new SpriteFrame("Naruto_04.png");
     java.util.ArrayList narutoWalkArrayList = sprite01.getFrameStripByRectangle(0, 4150, 500, 4220, 7);
     Animation walkAnim = new Animation(narutoWalkArrayList, 200);
     return walkAnim;
   }
-  Animation getPlayer2RasenganLaunchAnimation(){
+  
+  public static Animation getPlayer2RasenganLaunchAnimation(){
     sprite01  = new SpriteFrame("Naruto_04.png");
     sprite01.tintSpriteFrame(5.0, .8, .8, 1);
     java.util.ArrayList narutoWalkArrayList = sprite01.getFrameStripByRectangle(0, 4150, 500, 4220, 7);
     Animation walkAnim = new Animation(narutoWalkArrayList, 200);
     return walkAnim;
   }
-  
-  Animation getWalkAnimation(){
+  public static Animation getWalkAnimation(){
     sprite01  = new SpriteFrame("Deidara_Sprites_Look_Right.png");
     java.util.ArrayList walkArrayList = sprite01.getFrameStripByRectangle(2, 895, 398, 965, 6);
     Animation walkAnim = new Animation(walkArrayList, 200);
     return walkAnim;
   }
+  */
   
   void draw() {
     
