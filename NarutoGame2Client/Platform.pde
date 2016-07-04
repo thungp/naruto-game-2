@@ -3,7 +3,7 @@
  */
 class Platform extends MassedBeing {
  
-  static final float HEIGHT = 40.0f;              // the platform's height
+  static final float HEIGHT = 50.0f;              // the platform's height
   final color COLOR = color(125,125,125);  // the platform's color
 
   float width;   // width of this platform
@@ -12,7 +12,8 @@ class Platform extends MassedBeing {
    * makes a Platform with given center and width
    */
   Platform(PVector center, float width) {
-    super(new HRectangle(center, width, HEIGHT), HermesMath.zeroVector(), HermesMath.INFINITY, 1);
+    super(new HRectangle(center, width, HEIGHT), HermesMath.zeroVector(), 0.1f, 0);
+//    super(new HRectangle(center, width, HEIGHT), HermesMath.zeroVector(), HermesMath.INFINITY, 1);    
     
     this.width = width;
   }

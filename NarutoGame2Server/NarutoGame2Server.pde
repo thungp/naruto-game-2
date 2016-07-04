@@ -41,8 +41,8 @@ Change Log (V2.1)
 // DEFINE
 ///////////////////////////////////////////////////
 
-static final int WINDOW_WIDTH  = 1000;
-static final int WINDOW_HEIGHT = 1000;
+static final int WINDOW_WIDTH  = 800;
+static final int WINDOW_HEIGHT = 600;
 
 // DV v2.1
 //Constants for OSC input and output ports - change these here if you want different ports.
@@ -73,6 +73,8 @@ SpriteFrame sprite01;  // having issues with Processing and static variables and
 Animation player1RasenganLaunchAnimation;  
 Animation player2RasenganLaunchAnimation; 
 
+PImage background;
+
 ///////////////////////////////////////////////////
 // PAPPLET
 ///////////////////////////////////////////////////
@@ -80,6 +82,8 @@ Animation player2RasenganLaunchAnimation;
 void setup() {
   size(WINDOW_WIDTH, WINDOW_HEIGHT, JAVA2D);  // set window size
   Hermes.setPApplet(this);            // give the library the PApplet
+  
+  background = loadImage("sand_background.png");
   
   // set up the world, camera, and post office
   cam = new PlatformCamera();
@@ -96,7 +100,8 @@ void setup() {
 }
 
 void draw() {
-  background(230);
+  image(background, 0, 0);
+  background.resize(width, height);
   
   world.draw();
 }

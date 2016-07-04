@@ -6,6 +6,9 @@ class PlatformCamera extends HCamera {
   void draw() {
     setPosition(player.getPosition().x - WINDOW_WIDTH / 2,
                 player.getPosition().y - WINDOW_HEIGHT / 2);
+                
+//    zoomWithWorldCoordinates(0.5, 0, WINDOW_HEIGHT / 3);
+
     super.draw();
   }
 }

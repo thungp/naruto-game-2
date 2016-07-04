@@ -1,26 +1,30 @@
 /**
  * Represents the player
  */
-class Player extends MassedBeing {
+class Player extends MassedBeing implements BeingVar {
   
-  final static float PLAYER_WIDTH = 16;
-  final static float PLAYER_HEIGHT = 36;
+  final static float PLAYER_WIDTH = 50;
+  final static float PLAYER_HEIGHT = 39;
   final static float PLAYER_SPEED = 150;
   SpriteFrame sprite01;
 
-  
+  Rasengan rasengan;
   
   // constants used to indicate the direction the player is facing
-  final static int FACING_LEFT = 1;
-  final static int FACING_RIGHT = 2;
+  //final static int FACING_LEFT = 1;
+  //final static int FACING_RIGHT = 2;
   
   // contant used to indicate player 1 or Player 2
   public final static int PLAYER_1 = 1;
   public final static int PLAYER_2 = 2;
   
+  // fudge factors
+  final int rasegnanDistance = 20;
   
   int direction = FACING_RIGHT; // the direction the player is facing
   boolean jumped = false;       // whether the player can jump
+  
+  boolean rasenganActive = false;
   
   AnimatedSprite sprite;
   int animIndex;
@@ -67,7 +71,7 @@ class Player extends MassedBeing {
       // if the character is facing left, invert the image
       if(direction == FACING_LEFT) {
         scale(-1,1);  // I like how they use scale to revers direction.
-        translate(0, 0); // the 20 translate to the right helps with jumpiness when turning around.
+        translate(0, 0); // the dasd20 translate to the right helps with jumpiness when turning around.
       }
       image(sprite.animate(), 0, 0); // draw the current animation frame
     } else {
@@ -95,6 +99,39 @@ class Player extends MassedBeing {
     if(abs(getVelocity().y) >= 5)
       sprite.pause();
   }
+
+  int getRasenganPositionX() {
+    int rasenganX = 0;
+    if (direction == FACING_RIGHT) {
+      if(rasengan != null) {
+        rasenganX = (int) (getX() + (getWidth()/2) + (rasengan.getWidth()/2) - rasegnanDistance);
+        println(" I want want to see this");
+      } else {
+        rasenganX = (int) (getX() + (getWidth()/2) + (rasengan.RASENGAN_WIDTH/2) - rasegnanDistance);
+        println(" I don't want to see this");
+      }
+    } else {
+      if(rasengan != null) {
+        rasenganX = (int) (getX() - (getWidth()/2) - (rasengan.getWidth()/2) + rasegnanDistance);
+      } else {
+        rasenganX = (int) (getX() - (getWidth()/2) - (rasengan.RASENGAN_WIDTH/2) + rasegnanDistance);
+      }
+      
+    }
+   
+   return rasenganX; 
+  }
+  
+  int getRasenganPostionY() {
+   return (int) getY(); 
+  }
+  
+  public int getWidth(){
+    HShape shape = getShape();
+    HRectangle rectangle = shape.getBoundingBox();
+    int beingWidth =  (int) rectangle.getWidth();
+    return beingWidth;
+  }
   
   void receive(KeyMessage m) {
     int nKey = m.getKeyCode();
@@ -112,7 +149,7 @@ class Player extends MassedBeing {
         world.getPostOffice().sendFloat("/" + SYSTEM_NAME + "/" + "setA", 1.0);
       }
       if((nKey == POCodes.Key.W) && !jumped) {
-        addImpulse(new PVector(0, -PLAYER_SPEED, 0));
+        addImpulse(new PVector(0, -PLAYER_SPEED - 50, 0));
         jumped = true;
         if(abs(getVelocity().y) <= 5) sprite.unpause();  
         world.getPostOffice().sendFloat("/" + SYSTEM_NAME + "/" + "setW", 1.0);
@@ -122,6 +159,26 @@ class Player extends MassedBeing {
         if(abs(getVelocity().y) <= 5) sprite.unpause();  
         world.getPostOffice().sendFloat("/" + SYSTEM_NAME + "/" + "setS", 1.0);
       }
+      if(nKey == POCodes.Key.G) {
+        // Create Rasengan
+        if(!isRasenganActive()){
+          setRasenganActive(true);
+          rasengan = player1Rasengan = new Rasengan(getRasenganPositionX(), getRasenganPostionY(), Rasengan.PLAYER_1, direction);
+          rasengan.setOwner(this);
+          world.register(player1Rasengan, true);
+          if(this == player) {
+            world.register(player2, rasengan, playerRasenganCollider);
+          } else {
+            world.register(player, rasengan, playerRasenganCollider);
+          }
+        } else {
+         // don't do anything, only allow one rasengan active at a time. 
+        }
+        
+        world.getPostOffice().sendFloat("/" + SYSTEM_NAME + "/" + "setG", 1.0);
+      }
+      
+      
       
       // Player2
       if(nKey == POCodes.Key.RIGHT) {
@@ -148,6 +205,27 @@ class Player extends MassedBeing {
         world.getPostOffice().sendFloat("/" + SYSTEM_NAME + "/" + "setDOWN", 1.0);
       }
       
+      if(nKey == POCodes.Key.L) {
+        // Create Rasengan
+        if(!isRasenganActive()){
+          println("about to create rasengan"); //<>//
+          setRasenganActive(true);
+          rasengan = player2Rasengan = new Rasengan(getRasenganPositionX(), getRasenganPostionY(), Rasengan.PLAYER_2, direction);
+          rasengan.setOwner(this);
+          world.register(player2Rasengan, true);
+          if(this == player) {
+            world.register(player2, rasengan, playerRasenganCollider);
+          } else {
+            world.register(player, rasengan, playerRasenganCollider);
+          }
+        } else {
+           // don't allow more than one rasengan at a time. 
+        }
+        
+        world.getPostOffice().sendFloat("/" + SYSTEM_NAME + "/" + "setL", 1.0);
+      }
+      
+      
     } else { // when a key is released, we stop the player
         if(nKey == POCodes.Key.D || nKey == POCodes.Key.A || nKey == POCodes.Key.LEFT || nKey == POCodes.Key.RIGHT) {
           getVelocity().x = 0;
@@ -172,7 +250,7 @@ class Player extends MassedBeing {
         if(abs(getVelocity().y) <= 5) sprite.unpause();  
       }
       if(msgSplit[2].equals("setW") && !jumped) {
-        addImpulse(new PVector(0, -PLAYER_SPEED, 0));
+        addImpulse(new PVector(0, -PLAYER_SPEED - 50, 0));
         jumped = true;
         if(abs(getVelocity().y) <= 5) sprite.unpause();  
       }
@@ -180,6 +258,23 @@ class Player extends MassedBeing {
         getVelocity().y = 2*PLAYER_SPEED;
         if(abs(getVelocity().y) <= 5) sprite.unpause();  
       }
+      if(msgSplit[2].equals("setG")) {
+        // Create Rasengan
+        if(!isRasenganActive()){
+          setRasenganActive(true);
+          rasengan = player1Rasengan = new Rasengan(getRasenganPositionX(), getRasenganPostionY(), Rasengan.PLAYER_1, direction);
+          rasengan.setOwner(this);
+          world.register(player1Rasengan, true);
+          if(this == player) {
+            world.register(player2, rasengan, playerRasenganCollider);
+          } else {
+            world.register(player, rasengan, playerRasenganCollider);
+          }
+        } else {
+         // don't do anything, only allow one rasengan active at a time. 
+        }
+      }
+      
       
       
       //Player2 controls
@@ -206,11 +301,38 @@ class Player extends MassedBeing {
         getVelocity().x = 0;
         sprite.pause(); 
       }
+      
+      if(msgSplit[2].equals("setL")) {
+        // Create Rasengan
+        if(!isRasenganActive()){
+          println("about to create rasengan"); //<>//
+          setRasenganActive(true);
+          rasengan = player2Rasengan = new Rasengan(getRasenganPositionX(), getRasenganPostionY(), Rasengan.PLAYER_2, direction);
+          rasengan.setOwner(this);
+          world.register(player2Rasengan, true);
+          if(this == player) {
+            world.register(player2, rasengan, playerRasenganCollider);
+          } else {
+            world.register(player, rasengan, playerRasenganCollider);
+          }
+        } else {
+           // don't allow more than one rasengan at a time. 
+        }
+      }
+      
     } 
     else { // When the string is stop
       getVelocity().x = 0;
       sprite.pause();
     }
+  }
+  
+  public boolean isRasenganActive() {
+    return rasenganActive; 
+  }
+  
+  public void setRasenganActive(boolean val){
+    rasenganActive = val;
   }
   
 }

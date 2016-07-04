@@ -1,11 +1,11 @@
 /** 
  * Used in platform generation 
  * populates a rectangle with platforms 
- * sector coordinates are on a scale of 1800 pixels/unit (1/sector)
+ * sector coordinates are on a scale of 1000 pixels/unit (1/sector)
  */
 static class Sector extends Being {
   
-  final static int SECTOR_SIZE = 1800;    // pixel width of the sectors
+  final static int SECTOR_SIZE = 500;    // pixel width of the sectors
   final static float VERTICAL_STEP = 120; // vertical space between platforms
   
   HRectangle rectangle;   // the rectangle
@@ -20,7 +20,8 @@ static class Sector extends Being {
     this.x = x;
     this.y = y;
     
-    platforms.generatePlatforms(rectangle, VERTICAL_STEP, density);
+    platforms.generatePlatforms(this);
+//    platforms.generatePlatforms(rectangle, VERTICAL_STEP, density);
   }
   
   // the HRectangle defining the sector at this position

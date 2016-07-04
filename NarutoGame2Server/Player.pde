@@ -149,7 +149,7 @@ class Player extends MassedBeing implements BeingVar {
         world.getPostOffice().sendFloat("/" + SYSTEM_NAME + "/" + "setA", 1.0);
       }
       if((nKey == POCodes.Key.W) && !jumped) {
-        addImpulse(new PVector(0, -PLAYER_SPEED, 0));
+        addImpulse(new PVector(0, -PLAYER_SPEED - 50, 0));
         jumped = true;
         if(abs(getVelocity().y) <= 5) sprite.unpause();  
         world.getPostOffice().sendFloat("/" + SYSTEM_NAME + "/" + "setW", 1.0);
@@ -175,7 +175,7 @@ class Player extends MassedBeing implements BeingVar {
          // don't do anything, only allow one rasengan active at a time. 
         }
         
-        world.getPostOffice().sendFloat("/" + SYSTEM_NAME + "/" + "setL", 1.0);
+        world.getPostOffice().sendFloat("/" + SYSTEM_NAME + "/" + "setG", 1.0);
       }
       
       
@@ -250,7 +250,7 @@ class Player extends MassedBeing implements BeingVar {
         if(abs(getVelocity().y) <= 5) sprite.unpause();  
       }
       if(msgSplit[2].equals("setW") && !jumped) {
-        addImpulse(new PVector(0, -PLAYER_SPEED, 0));
+        addImpulse(new PVector(0, -PLAYER_SPEED - 50, 0));
         jumped = true;
         if(abs(getVelocity().y) <= 5) sprite.unpause();  
       }
@@ -258,6 +258,24 @@ class Player extends MassedBeing implements BeingVar {
         getVelocity().y = 2*PLAYER_SPEED;
         if(abs(getVelocity().y) <= 5) sprite.unpause();  
       }
+      if(msgSplit[2].equals("setG")) {
+        // Create Rasengan
+        if(!isRasenganActive()){
+          setRasenganActive(true);
+          rasengan = player1Rasengan = new Rasengan(getRasenganPositionX(), getRasenganPostionY(), Rasengan.PLAYER_1, direction);
+          rasengan.setOwner(this);
+          world.register(player1Rasengan, true);
+          if(this == player) {
+            world.register(player2, rasengan, playerRasenganCollider);
+          } else {
+            world.register(player, rasengan, playerRasenganCollider);
+          }
+        } else {
+         // don't do anything, only allow one rasengan active at a time. 
+        }
+        
+      }
+      
       
       
       //Player2 controls
@@ -284,6 +302,25 @@ class Player extends MassedBeing implements BeingVar {
         getVelocity().x = 0;
         sprite.pause(); 
       }
+      
+      if(msgSplit[2].equals("setL")) {
+        // Create Rasengan
+        if(!isRasenganActive()){
+          println("about to create rasengan"); //<>//
+          setRasenganActive(true);
+          rasengan = player2Rasengan = new Rasengan(getRasenganPositionX(), getRasenganPostionY(), Rasengan.PLAYER_2, direction);
+          rasengan.setOwner(this);
+          world.register(player2Rasengan, true);
+          if(this == player) {
+            world.register(player2, rasengan, playerRasenganCollider);
+          } else {
+            world.register(player, rasengan, playerRasenganCollider);
+          }
+        } else {
+           // don't allow more than one rasengan at a time. 
+        }
+      }
+      
     } 
     else { // When the string is stop
       getVelocity().x = 0;

@@ -26,7 +26,9 @@ player with keypad, 1st player with a,d,s,w
 Change Log (V2.1)
 1. (DV) Introduction of code to use Osc Messages to control the players.
 
-
+6. Discovered that Processing has issues with useof static variables in non static classes. (unfortunate).
+   ref: https://processing.org/discourse/beta/num_1263237645.html
+   
 
 
 
@@ -39,7 +41,7 @@ Change Log (V2.1)
 // DEFINE
 ///////////////////////////////////////////////////
 
-static final int WINDOW_WIDTH = 600;
+static final int WINDOW_WIDTH  = 800;
 static final int WINDOW_HEIGHT = 600;
 
 // DV v2.1
@@ -60,6 +62,18 @@ PostOffice po;
 PlatformGroup platforms;
 Player player;
 Player player2;
+Rasengan player1Rasengan;
+Rasengan player2Rasengan;
+PlatformCollider platformCollider = new PlatformCollider(0);
+PlayerCollider playerCollider = new PlayerCollider(0);
+PlayerRasenganCollider playerRasenganCollider = new PlayerRasenganCollider(0);
+RasenganRasenganCollider rasenganRasenganCollider = new RasenganRasenganCollider(0);
+
+SpriteFrame sprite01;  // having issues with Processing and static variables and classes: https://processing.org/discourse/beta/num_1263237645.html
+Animation player1RasenganLaunchAnimation;  
+Animation player2RasenganLaunchAnimation; 
+
+PImage background;
 
 ///////////////////////////////////////////////////
 // PAPPLET
@@ -69,21 +83,25 @@ void setup() {
   size(WINDOW_WIDTH, WINDOW_HEIGHT, JAVA2D);  // set window size
   Hermes.setPApplet(this);            // give the library the PApplet
   
+  background = loadImage("sand_background.png");
+  
   // set up the world, camera, and post office
   cam = new PlatformCamera();
   po = new PostOffice(PORT_FOR_INCOMING_OSC_MESSAGES, PORT_FOR_OUTGOING_OSC_MESSAGES);  // DV v2.1
   world = new PlatformWorld(po, cam);
-  
   rectMode(CENTER);
   
   frameRate(60);
-  
+  sprite01 = RasenganHelper.initSpriteFrame("Naruto_04.png");
+  player1RasenganLaunchAnimation  = RasenganHelper.getRasenganLaunchAnimation(sprite01);
+  player2RasenganLaunchAnimation = RasenganHelper.getPlayer2RasenganLaunchAnimation(sprite01);
   //Sets up and starts world
   world.start();
 }
 
 void draw() {
-  background(230);
+  image(background, 0, 0);
+  background.resize(width, height);
   
   world.draw();
 }
