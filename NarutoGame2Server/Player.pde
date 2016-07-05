@@ -43,6 +43,7 @@ class Player extends MassedBeing implements BeingVar {
       animIndex = sprite.addAnimation(getNarutoWalkAnimation());
     } else {
       animIndex = sprite.addAnimation(getWalkAnimation());
+      direction = FACING_LEFT;
     }
     sprite.setActiveAnimation(animIndex);
     sprite.pause();
@@ -149,7 +150,7 @@ class Player extends MassedBeing implements BeingVar {
         world.getPostOffice().sendFloat("/" + SYSTEM_NAME + "/" + "setA", 1.0);
       }
       if((nKey == POCodes.Key.W) && !jumped) {
-        addImpulse(new PVector(0, -PLAYER_SPEED - 50, 0));
+        addImpulse(new PVector(0, -PLAYER_SPEED - 75, 0));
         jumped = true;
         if(abs(getVelocity().y) <= 5) sprite.unpause();  
         world.getPostOffice().sendFloat("/" + SYSTEM_NAME + "/" + "setW", 1.0);
@@ -194,7 +195,7 @@ class Player extends MassedBeing implements BeingVar {
         world.getPostOffice().sendFloat("/" + SYSTEM_NAME + "/" + "setLEFT", 1.0);
       }
       if(nKey == POCodes.Key.UP && !jumped) {
-        addImpulse(new PVector(0, -PLAYER_SPEED, 0));
+        addImpulse(new PVector(0, -PLAYER_SPEED - 75, 0));
         jumped = true;
         if(abs(getVelocity().y) <= 5) sprite.unpause();  
         world.getPostOffice().sendFloat("/" + SYSTEM_NAME + "/" + "setUP", 1.0);
@@ -250,7 +251,7 @@ class Player extends MassedBeing implements BeingVar {
         if(abs(getVelocity().y) <= 5) sprite.unpause();  
       }
       if(msgSplit[2].equals("setW") && !jumped) {
-        addImpulse(new PVector(0, -PLAYER_SPEED - 50, 0));
+        addImpulse(new PVector(0, -PLAYER_SPEED - 75, 0));
         jumped = true;
         if(abs(getVelocity().y) <= 5) sprite.unpause();  
       }
@@ -290,7 +291,7 @@ class Player extends MassedBeing implements BeingVar {
         if(abs(getVelocity().y) <= 5) sprite.unpause();  
       }
       if(msgSplit[2].equals("setUP") && !jumped) {
-        addImpulse(new PVector(0, -PLAYER_SPEED, 0));
+        addImpulse(new PVector(0, -PLAYER_SPEED - 75, 0));
         jumped = true;
         if(abs(getVelocity().y) <= 5) sprite.unpause();  
       }

@@ -13,8 +13,8 @@ class PlatformWorld extends World {
     world.register(grid, cam, new PlatformGenerator());
   
     // set up the player
-    player = new Player(15, 0, Player.PLAYER_1);
-    player2 = new Player(170, 0, Player.PLAYER_2);
+    player = new Player(0, 0, Player.PLAYER_1);
+    player2 = new Player(470, 0, Player.PLAYER_2);
     println("display rasengan for testing - a");
     
     

@@ -43,16 +43,16 @@ class PlatformGroup extends Group<Platform> {
   
   void generatePlatforms(){    
     float x = WINDOW_WIDTH / 2;
-    float y = WINDOW_HEIGHT*4;
+    float y = WINDOW_HEIGHT * 4;
     addPlatform(new PVector(x, y, 0), WINDOW_WIDTH * 2);
   }
   
   void generatePlatforms(Sector sector){
     int counter = 1; 
     while(counter < 10) {   
-      float x = sector.SECTOR_SIZE;
+      float x = -sector.SECTOR_SIZE;
       float y = sector.SECTOR_SIZE * counter;
-      addPlatform(new PVector(x, y, 0), sector.SECTOR_SIZE * 2);
+      addPlatform(new PVector(x, y, 0), sector.SECTOR_SIZE * 100);
       counter++;
     }
   }
