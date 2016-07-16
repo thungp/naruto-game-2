@@ -1,7 +1,7 @@
 /** 
  * Used in platform generation 
  * populates a rectangle with platforms 
- * sector coordinates are on a scale of 1000 pixels/unit (1/sector)
+ * sector coordinates are on a scale of 500 pixels/unit (1/sector)
  */
 static class Sector extends Being {
   
