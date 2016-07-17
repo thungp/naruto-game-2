@@ -6,6 +6,9 @@ class Player extends MassedBeing implements BeingVar {
   final static float PLAYER_WIDTH = 50;
   final static float PLAYER_HEIGHT = 39;
   final static float PLAYER_SPEED = 150;
+  final static float FLOOR_Y = 456.91064;
+  final static float LEFT_WALL_X =-140;
+  final static float RIGHT_WALL_X = 645;
   SpriteFrame sprite01;
 
   Rasengan rasengan;
@@ -86,7 +89,22 @@ class Player extends MassedBeing implements BeingVar {
         translate(0, 0); // the 20 translate to the right helps with jumpiness when turning around.
       }
       image(sprite.animate(), 0, 0); // draw the current animation frame
+    }    
+    PVector pos = this.getPosition();
+    // Hack: when player y value > 458, reset the player Y value to 456.91064
+    // at some point player falls throught he floor. 
+    println("PlayerNum (" + playerNum + ") (" + pos.x + ", " + pos.y + ") ");
+    if(pos.y > 458) {
+     println("PlayerNum (" + playerNum + ") (" + pos.x + ", " + pos.y + ") Detected player falling through floor. Corrected to (" + FLOOR_Y + ").");
+     this.setY(Player.FLOOR_Y); // tries to reset case where character eventually falls throughthe floor. 
+     
     }
+    if(pos.x < Player.LEFT_WALL_X) {
+      this.setX(Player.LEFT_WALL_X);
+    } else if(pos.x > Player.RIGHT_WALL_X) {
+      this.setX(Player.RIGHT_WALL_X);
+    }
+    
   }
   
   // when this is called the player can jump again
