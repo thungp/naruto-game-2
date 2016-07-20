@@ -87,7 +87,7 @@ void setup() {
   
   // Load the background music and player
   minim = new Minim(this);
-  bgMusic = minim.loadFile("video-game-land.wav"); 
+//bgMusic = minim.loadFile("video-game-land.wav"); 
 //bgMusic.loop();    // Music looper. Prevent client and server from playing music at the same time
   
   // set up the world, camera, and post office
