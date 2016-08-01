@@ -28,6 +28,8 @@ player with keypad, 1st player with a,d,s,w
 7. (DV) Background Music found at: https://www.freesound.org/people/FoolBoyMedia/sounds/320232/
 8. (DV) Music Player library documentation found at http://code.compartmental.net/minim/
 9. (PT) Added Player boundary check for falling through floor or exiting left or right wall.
+
+10. (PT) Added string for remote IP
 */
 
 
@@ -43,7 +45,10 @@ static final int WINDOW_HEIGHT = 600;
 // DV v2.1
 //Constants for OSC input and output ports - change these here if you want different ports.
 final int PORT_FOR_INCOMING_OSC_MESSAGES = 12345;
-final int PORT_FOR_OUTGOING_OSC_MESSAGES = 54321;
+final int PORT_FOR_OUTGOING_OSC_MESSAGES = 54320;
+//static final String REMOTE_SYSTEM_IP = "192.168.199.126";
+//static final String REMOTE_SYSTEM_IP = "100.65.67.47";
+static final String REMOTE_SYSTEM_IP = "207.204.250.207";
 static final String SYSTEM_NAME = "NARUTO"; 
 
 static final float GRAVITY = -200; // acceleration due to gravity
@@ -64,6 +69,7 @@ PlatformCollider platformCollider = new PlatformCollider(0);
 PlayerCollider playerCollider = new PlayerCollider(0);
 PlayerRasenganCollider playerRasenganCollider = new PlayerRasenganCollider(0);
 RasenganRasenganCollider rasenganRasenganCollider = new RasenganRasenganCollider(0);
+
 
 SpriteFrame sprite01;  // having issues with Processing and static variables and classes: https://processing.org/discourse/beta/num_1263237645.html
 Animation player1RasenganLaunchAnimation;  
@@ -92,7 +98,8 @@ void setup() {
   
   // set up the world, camera, and post office
   cam = new PlatformCamera();
-  po = new PostOffice(PORT_FOR_INCOMING_OSC_MESSAGES, PORT_FOR_OUTGOING_OSC_MESSAGES);  // DV v2.1
+  //po = new PostOffice(PORT_FOR_INCOMING_OSC_MESSAGES, PORT_FOR_OUTGOING_OSC_MESSAGES);  // DV v2.1  REMOTE_SYSTEM_IP
+  po = new PostOffice(PORT_FOR_INCOMING_OSC_MESSAGES, PORT_FOR_OUTGOING_OSC_MESSAGES, REMOTE_SYSTEM_IP);  // PT v2.
   world = new PlatformWorld(po, cam);
   rectMode(CENTER);
   

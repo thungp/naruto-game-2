@@ -42,8 +42,9 @@ static final int WINDOW_HEIGHT = 600;
 
 // DV v2.1
 //Constants for OSC input and output ports - change these here if you want different ports.
-final int PORT_FOR_INCOMING_OSC_MESSAGES = 54321;
+final int PORT_FOR_INCOMING_OSC_MESSAGES = 54320;
 final int PORT_FOR_OUTGOING_OSC_MESSAGES = 12345;
+static final String REMOTE_SYSTEM_IP = "207.204.250.207";
 static final String SYSTEM_NAME = "NARUTO"; 
 
 static final float GRAVITY = -200; // acceleration due to gravity
@@ -92,7 +93,8 @@ void setup() {
   
   // set up the world, camera, and post office
   cam = new PlatformCamera();
-  po = new PostOffice(PORT_FOR_INCOMING_OSC_MESSAGES, PORT_FOR_OUTGOING_OSC_MESSAGES);  // DV v2.1
+  //po = new PostOffice(PORT_FOR_INCOMING_OSC_MESSAGES, PORT_FOR_OUTGOING_OSC_MESSAGES);  // DV v2.1
+  po = new PostOffice(PORT_FOR_INCOMING_OSC_MESSAGES, PORT_FOR_OUTGOING_OSC_MESSAGES, REMOTE_SYSTEM_IP);  // PT v2.
   world = new PlatformWorld(po, cam);
   rectMode(CENTER);
   
