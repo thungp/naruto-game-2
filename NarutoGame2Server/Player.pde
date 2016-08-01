@@ -187,8 +187,10 @@ class Player extends MassedBeing implements BeingVar {
           world.register(player1Rasengan, true);
           if(this == player) {
             world.register(player2, rasengan, playerRasenganCollider);
+            rasengan1.play(); // Play the rasengan sound
           } else {
-            world.register(player, rasengan, playerRasenganCollider);
+            world.register(player, rasengan, playerRasenganCollider); 
+            rasengan2.play();  // Play the rasengan sound
           }
         } else {
          // don't do anything, only allow one rasengan active at a time. 
@@ -234,8 +236,10 @@ class Player extends MassedBeing implements BeingVar {
           world.register(player2Rasengan, true);
           if(this == player) {
             world.register(player2, rasengan, playerRasenganCollider);
+            rasengan1.play();  // Play the rasengan sound
           } else {
             world.register(player, rasengan, playerRasenganCollider);
+            rasengan2.play();  // Play the rasengan sound
           }
         } else {
            // don't allow more than one rasengan at a time. 
@@ -286,8 +290,10 @@ class Player extends MassedBeing implements BeingVar {
           world.register(player1Rasengan, true);
           if(this == player) {
             world.register(player2, rasengan, playerRasenganCollider);
+            rasengan1.play();  // Play the rasengan sound
           } else {
             world.register(player, rasengan, playerRasenganCollider);
+            rasengan2.play();  // Play the rasengan sound
           }
         } else {
          // don't do anything, only allow one rasengan active at a time. 
@@ -332,8 +338,10 @@ class Player extends MassedBeing implements BeingVar {
           world.register(player2Rasengan, true);
           if(this == player) {
             world.register(player2, rasengan, playerRasenganCollider);
+            rasengan1.play();  // Play the rasengan sound
           } else {
             world.register(player, rasengan, playerRasenganCollider);
+            rasengan2.play();  // Play the rasengan sound
           }
         } else {
            // don't allow more than one rasengan at a time. 

@@ -27,7 +27,7 @@ player with keypad, 1st player with a,d,s,w
    ref: https://processing.org/discourse/beta/num_1263237645.html
 7. (DV) Background Music found at: https://www.freesound.org/people/FoolBoyMedia/sounds/320232/
 8. (DV) Music Player library documentation found at http://code.compartmental.net/minim/
-
+9. (PT) Added Player boundary check for falling through floor or exiting left or right wall.
 */
 
 
@@ -88,8 +88,8 @@ void setup() {
   
   // Load the background music and player
   minim = new Minim(this);
-  bgMusic = minim.loadFile("video-game-land.wav"); 
-//  bgMusic.loop();
+//bgMusic = minim.loadFile("video-game-land.wav"); 
+//bgMusic.loop();    // Music looper. Prevent client and server from playing music at the same time
   
   // set up the world, camera, and post office
   cam = new PlatformCamera();

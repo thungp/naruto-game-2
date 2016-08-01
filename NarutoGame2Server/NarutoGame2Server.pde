@@ -79,6 +79,8 @@ PImage background;
 
 // Music Globals
 AudioPlayer bgMusic;
+AudioPlayer rasengan1;
+AudioPlayer rasengan2;
 Minim minim; // Audio context
 
 ///////////////////////////////////////////////////
@@ -96,6 +98,8 @@ void setup() {
   bgMusic = minim.loadFile("video-game-land.wav"); 
   bgMusic.loop();
   
+  rasengan1 = minim.loadFile("blasterFire.wav"); 
+  rasengan2 = minim.loadFile("gameBeep.wav");
   // set up the world, camera, and post office
   cam = new PlatformCamera();
   //po = new PostOffice(PORT_FOR_INCOMING_OSC_MESSAGES, PORT_FOR_OUTGOING_OSC_MESSAGES);  // DV v2.1  REMOTE_SYSTEM_IP

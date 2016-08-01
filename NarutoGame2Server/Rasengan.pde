@@ -51,7 +51,7 @@ class Rasengan  extends MassedBeing implements BeingVar{
       // add some default velocity in the correct direction heading left.
      getVelocity().x = -RASENGAN_SPEED; 
     }
-    rasenganLifeTimer = RASENGAN_LIFE * 60;
+    rasenganLifeTimer = RASENGAN_LIFE * 60;    
   }
   
 
