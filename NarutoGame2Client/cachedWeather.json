@@ -1,0 +1,194 @@
+{
+  "cnt": 5,
+  "list": [
+    {
+      "id": 5516233,
+      "dt": 1470160500,
+      "clouds": {"all": 1},
+      "coord": {
+        "lon": -101.83,
+        "lat": 35.22
+      },
+      "wind": {
+        "speed": 4.6,
+        "deg": 180
+      },
+      "visibility": 16093,
+      "sys": {
+        "message": 0.0508,
+        "id": 2553,
+        "sunset": 1470188938,
+        "sunrise": 1470139081,
+        "type": 1,
+        "country": "US"
+      },
+      "name": "Amarillo",
+      "weather": [{
+        "id": 800,
+        "icon": "01d",
+        "description": "sky is clear",
+        "main": "Clear"
+      }],
+      "main": {
+        "humidity": 36,
+        "pressure": 1021,
+        "temp_max": 36,
+        "temp_min": 33,
+        "temp": 34.42
+      }
+    },
+    {
+      "id": 4058076,
+      "dt": 1470161880,
+      "clouds": {"all": 20},
+      "coord": {
+        "lon": -87.08,
+        "lat": 32.33
+      },
+      "wind": {
+        "speed": 3.1,
+        "deg": 30
+      },
+      "visibility": 16093,
+      "sys": {
+        "message": 0.0298,
+        "id": 234,
+        "sunset": 1470185070,
+        "sunrise": 1470135871,
+        "type": 1,
+        "country": "US"
+      },
+      "name": "Dallas County",
+      "weather": [{
+        "id": 211,
+        "icon": "11d",
+        "description": "proximity thunderstorm",
+        "main": "Thunderstorm"
+      }],
+      "main": {
+        "humidity": 62,
+        "pressure": 1018,
+        "temp_max": 31,
+        "temp_min": 29,
+        "temp": 29.98
+      }
+    },
+    {
+      "id": 1848313,
+      "dt": 1470163800,
+      "clouds": {"all": 75},
+      "coord": {
+        "lon": 139.67,
+        "lat": 35.28
+      },
+      "wind": {
+        "speed": 1.5,
+        "deg": 210
+      },
+      "visibility": 10000,
+      "sys": {
+        "message": 0.045,
+        "id": 7619,
+        "sunset": 1470131023,
+        "sunrise": 1470081083,
+        "type": 1,
+        "country": "JP"
+      },
+      "name": "Yokosuka",
+      "weather": [
+        {
+          "id": 521,
+          "icon": "09n",
+          "description": "proximity shower rain",
+          "main": "Rain"
+        },
+        {
+          "id": 701,
+          "icon": "50n",
+          "description": "mist",
+          "main": "Mist"
+        }
+      ],
+      "rain": {"1h": 8.48},
+      "main": {
+        "humidity": 88,
+        "pressure": 1007,
+        "temp_max": 26.67,
+        "temp_min": 22.78,
+        "temp": 24.66
+      }
+    },
+    {
+      "id": 4720131,
+      "dt": 1470162905,
+      "clouds": {"all": 40},
+      "coord": {
+        "lon": -97.32,
+        "lat": 27.88
+      },
+      "wind": {
+        "speed": 5.7,
+        "deg": 120
+      },
+      "sys": {
+        "message": 0.0044,
+        "id": 2587,
+        "sunset": 1470187058,
+        "sunrise": 1470138798,
+        "type": 1,
+        "country": "US"
+      },
+      "name": "Portland",
+      "weather": [{
+        "id": 802,
+        "icon": "03d",
+        "description": "scattered clouds",
+        "main": "Clouds"
+      }],
+      "main": {
+        "humidity": 62,
+        "pressure": 1018,
+        "temp_max": 36,
+        "temp_min": 32,
+        "temp": 33.81
+      }
+    },
+    {
+      "id": 5601538,
+      "dt": 1470160560,
+      "clouds": {"all": 1},
+      "coord": {
+        "lon": -117,
+        "lat": 46.73
+      },
+      "wind": {
+        "gust": 10.3,
+        "speed": 6.7,
+        "deg": 290
+      },
+      "visibility": 16093,
+      "sys": {
+        "message": 0.0294,
+        "id": 2945,
+        "sunset": 1470194234,
+        "sunrise": 1470141066,
+        "type": 1,
+        "country": "US"
+      },
+      "name": "Moscow",
+      "weather": [{
+        "id": 800,
+        "icon": "01d",
+        "description": "sky is clear",
+        "main": "Clear"
+      }],
+      "main": {
+        "humidity": 33,
+        "pressure": 1017,
+        "temp_max": 27,
+        "temp_min": 23,
+        "temp": 25.15
+      }
+    }
+  ]
+}

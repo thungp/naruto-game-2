@@ -93,9 +93,9 @@ class Player extends MassedBeing implements BeingVar {
     PVector pos = this.getPosition();
     // Hack: when player y value > 458, reset the player Y value to 456.91064
     // at some point player falls throught he floor. 
-    println("PlayerNum (" + playerNum + ") (" + pos.x + ", " + pos.y + ") ");
+    //println("PlayerNum (" + playerNum + ") (" + pos.x + ", " + pos.y + ") ");
     if(pos.y > 458) {
-     println("PlayerNum (" + playerNum + ") (" + pos.x + ", " + pos.y + ") Detected player falling through floor. Corrected to (" + FLOOR_Y + ").");
+     //println("PlayerNum (" + playerNum + ") (" + pos.x + ", " + pos.y + ") Detected player falling through floor. Corrected to (" + FLOOR_Y + ").");
      this.setY(Player.FLOOR_Y); // tries to reset case where character eventually falls throughthe floor. 
      
     }
@@ -112,11 +112,18 @@ class Player extends MassedBeing implements BeingVar {
     jumped = false;
   }
   
-  // we use update() to apply gravity
+  // we use update() to apply gravity and wind
   void update() {
     addForce(new PVector(0, -GRAVITY * getMass(), 0));
     if(abs(getVelocity().y) >= 5)
       sprite.pause();
+    
+    if(cityList != null) {
+      City currentCity = cityList.getCurrentCity();
+      if(currentCity != null) {
+        addForce(new PVector(currentCity.getWindSpeed(), 0, 0));
+      }
+    }
   }
 
   int getRasenganPositionX() {
@@ -187,10 +194,8 @@ class Player extends MassedBeing implements BeingVar {
           world.register(player1Rasengan, true);
           if(this == player) {
             world.register(player2, rasengan, playerRasenganCollider);
-            rasengan1.play(); // Play the rasengan sound
           } else {
-            world.register(player, rasengan, playerRasenganCollider); 
-            rasengan2.play();  // Play the rasengan sound
+            world.register(player, rasengan, playerRasenganCollider);
           }
         } else {
          // don't do anything, only allow one rasengan active at a time. 
@@ -236,10 +241,8 @@ class Player extends MassedBeing implements BeingVar {
           world.register(player2Rasengan, true);
           if(this == player) {
             world.register(player2, rasengan, playerRasenganCollider);
-            rasengan1.play();  // Play the rasengan sound
           } else {
             world.register(player, rasengan, playerRasenganCollider);
-            rasengan2.play();  // Play the rasengan sound
           }
         } else {
            // don't allow more than one rasengan at a time. 
@@ -290,10 +293,8 @@ class Player extends MassedBeing implements BeingVar {
           world.register(player1Rasengan, true);
           if(this == player) {
             world.register(player2, rasengan, playerRasenganCollider);
-            rasengan1.play();  // Play the rasengan sound
           } else {
             world.register(player, rasengan, playerRasenganCollider);
-            rasengan2.play();  // Play the rasengan sound
           }
         } else {
          // don't do anything, only allow one rasengan active at a time. 
@@ -338,10 +339,8 @@ class Player extends MassedBeing implements BeingVar {
           world.register(player2Rasengan, true);
           if(this == player) {
             world.register(player2, rasengan, playerRasenganCollider);
-            rasengan1.play();  // Play the rasengan sound
           } else {
             world.register(player, rasengan, playerRasenganCollider);
-            rasengan2.play();  // Play the rasengan sound
           }
         } else {
            // don't allow more than one rasengan at a time. 

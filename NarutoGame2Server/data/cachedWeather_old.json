@@ -1,0 +1,113 @@
+{
+  "cnt": 3,
+  "list": [
+    {
+      "id": 4058076,
+      "dt": 1470139380,
+      "clouds": {"all": 75},
+      "coord": {
+        "lon": -87.08,
+        "lat": 32.33
+      },
+      "wind": {
+        "speed": 1.5,
+        "deg": 180
+      },
+      "visibility": 16093,
+      "sys": {
+        "message": 0.0274,
+        "id": 231,
+        "sunset": 1470185070,
+        "sunrise": 1470135871,
+        "type": 1,
+        "country": "US"
+      },
+      "name": "Dallas County",
+      "weather": [{
+        "id": 701,
+        "icon": "50d",
+        "description": "mist",
+        "main": "Mist"
+      }],
+      "main": {
+        "humidity": 100,
+        "pressure": 1019,
+        "temp_max": 25,
+        "temp_min": 24,
+        "temp": 24.52
+      }
+    },
+    {
+      "id": 1848313,
+      "dt": 1470140712,
+      "clouds": {"all": 20},
+      "coord": {
+        "lon": 139.67,
+        "lat": 35.28
+      },
+      "wind": {
+        "speed": 2.6,
+        "deg": 180
+      },
+      "visibility": 16093,
+      "sys": {
+        "message": 0.0426,
+        "id": 7622,
+        "sunset": 1470131023,
+        "sunrise": 1470081083,
+        "type": 1,
+        "country": "JP"
+      },
+      "name": "Yokosuka",
+      "weather": [{
+        "id": 501,
+        "icon": "10n",
+        "description": "moderate rain",
+        "main": "Rain"
+      }],
+      "rain": {"1h": 2.03},
+      "main": {
+        "humidity": 88,
+        "pressure": 1011,
+        "temp_max": 28.33,
+        "temp_min": 25,
+        "temp": 26.55
+      }
+    },
+    {
+      "id": 4720131,
+      "dt": 1470140792,
+      "clouds": {"all": 20},
+      "coord": {
+        "lon": -97.32,
+        "lat": 27.88
+      },
+      "wind": {
+        "speed": 1.5,
+        "deg": 160
+      },
+      "sys": {
+        "message": 0.0036,
+        "id": 2587,
+        "sunset": 1470187058,
+        "sunrise": 1470138798,
+        "type": 1,
+        "country": "US"
+      },
+      "name": "Portland",
+      "weather": [{
+        "id": 801,
+        "icon": "02d",
+        "description": "few clouds",
+        "main": "Clouds"
+      }],
+      "main": {
+        "humidity": 88,
+        "pressure": 1017,
+        "temp_max": 27.78,
+        "temp_min": 25,
+        "temp": 26.11
+      }
+    }
+  ]
+}
