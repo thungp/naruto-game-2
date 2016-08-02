@@ -1,7 +1,5 @@
 import java.util.*;
 
-
-
 public class City {
   float windSpeed;
   int windDirection;

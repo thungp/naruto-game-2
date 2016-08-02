@@ -65,8 +65,14 @@ class PlatformWorld extends World {
     po.subscribe(player2, "/NARUTO/stop");
     po.subscribe(player2, "/NARUTO/setL");
   
-
     
+    
+    playerHealth  = new HealthBar(player, 0, 10);
+    playerHealth2 = new HealthBar(player2, 225, 10);
+    
+    world.register(playerHealth, true);
+    world.register(playerHealth2, true);
 
   }
+  
 }

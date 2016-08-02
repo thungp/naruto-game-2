@@ -9,6 +9,13 @@ class Player extends MassedBeing implements BeingVar {
   final static float FLOOR_Y = 456.91064;
   final static float LEFT_WALL_X =-140;
   final static float RIGHT_WALL_X = 645;
+  final static float MAX_HEALTH = 100;
+  
+  
+  float health = MAX_HEALTH;
+  
+  
+  
   SpriteFrame sprite01;
 
   Rasengan rasengan;
@@ -33,6 +40,7 @@ class Player extends MassedBeing implements BeingVar {
   int animIndex;
   
   int playerNum;
+  int looped = 0;
   
   Player(float x, float y, int player) {
     super(new HRectangle(HermesMath.makeVector(x, y), PLAYER_WIDTH, PLAYER_HEIGHT), HermesMath.zeroVector(), 1.0f, 1.0f);
@@ -68,6 +76,7 @@ class Player extends MassedBeing implements BeingVar {
   
   void draw() {
     if(playerNum == PLAYER_1) {
+      
       scale(2.0); // original. 0.2, if you make it .9, needto translate -70, to alight character to platform
                   // for nartuo make 2.0, make translate -20, on y, 
       imageMode(CENTER);
@@ -361,5 +370,13 @@ class Player extends MassedBeing implements BeingVar {
   public void setRasenganActive(boolean val){
     rasenganActive = val;
   }
+  
+  void setHealth(float health){
+    this.health += health;
+  }
+  
+  float getHealth(){
+   return this.health;
+  } 
   
 }

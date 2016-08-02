@@ -3,20 +3,21 @@
   "list": [
     {
       "id": 5516233,
-      "dt": 1470160500,
+      "dt": 1470177300,
       "clouds": {"all": 1},
       "coord": {
         "lon": -101.83,
         "lat": 35.22
       },
       "wind": {
-        "speed": 4.6,
-        "deg": 180
+        "gust": 8.7,
+        "speed": 5.1,
+        "deg": 160
       },
       "visibility": 16093,
       "sys": {
-        "message": 0.0342,
-        "id": 2553,
+        "message": 0.0937,
+        "id": 2601,
         "sunset": 1470188938,
         "sunrise": 1470139081,
         "type": 1,
@@ -30,28 +31,28 @@
         "main": "Clear"
       }],
       "main": {
-        "humidity": 36,
-        "pressure": 1021,
+        "humidity": 26,
+        "pressure": 1018,
         "temp_max": 36,
-        "temp_min": 33,
-        "temp": 34.41
+        "temp_min": 35,
+        "temp": 35.67
       }
     },
     {
       "id": 4058076,
-      "dt": 1470161160,
-      "clouds": {"all": 40},
+      "dt": 1470175500,
+      "clouds": {"all": 1},
       "coord": {
         "lon": -87.08,
         "lat": 32.33
       },
       "wind": {
-        "speed": 1,
-        "deg": 0
+        "speed": 2.6,
+        "deg": 130
       },
       "visibility": 16093,
       "sys": {
-        "message": 0.0277,
+        "message": 0.0311,
         "id": 231,
         "sunset": 1470185070,
         "sunrise": 1470135871,
@@ -60,78 +61,69 @@
       },
       "name": "Dallas County",
       "weather": [{
-        "id": 802,
-        "icon": "03d",
-        "description": "scattered clouds",
-        "main": "Clouds"
+        "id": 800,
+        "icon": "01d",
+        "description": "sky is clear",
+        "main": "Clear"
       }],
       "main": {
-        "humidity": 83,
-        "pressure": 1017,
-        "temp_max": 34,
-        "temp_min": 26,
-        "temp": 30.19
+        "humidity": 88,
+        "pressure": 1018,
+        "temp_max": 27,
+        "temp_min": 25,
+        "temp": 26.05
       }
     },
     {
       "id": 1848313,
-      "dt": 1470162358,
+      "dt": 1470177610,
       "clouds": {"all": 75},
       "coord": {
         "lon": 139.67,
         "lat": 35.28
       },
       "wind": {
-        "speed": 1.5,
-        "deg": 210
+        "speed": 1,
+        "deg": 0
       },
+      "visibility": 10000,
       "sys": {
-        "message": 0.0039,
+        "message": 0.0452,
         "id": 7619,
         "sunset": 1470131023,
         "sunrise": 1470081083,
-        "type": 3,
+        "type": 1,
         "country": "JP"
       },
       "name": "Yokosuka",
-      "weather": [
-        {
-          "id": 521,
-          "icon": "09n",
-          "description": "proximity shower rain",
-          "main": "Rain"
-        },
-        {
-          "id": 701,
-          "icon": "50n",
-          "description": "mist",
-          "main": "Mist"
-        }
-      ],
-      "rain": {"1h": 8.08},
+      "weather": [{
+        "id": 520,
+        "icon": "09n",
+        "description": "light intensity shower rain",
+        "main": "Rain"
+      }],
       "main": {
-        "humidity": 88,
-        "pressure": 1007,
-        "temp_max": 26.67,
-        "temp_min": 22.78,
-        "temp": 24.73
+        "humidity": 94,
+        "pressure": 1009,
+        "temp_max": 28.33,
+        "temp_min": 23.33,
+        "temp": 25.58
       }
     },
     {
       "id": 4720131,
-      "dt": 1470162109,
+      "dt": 1470177306,
       "clouds": {"all": 40},
       "coord": {
         "lon": -97.32,
         "lat": 27.88
       },
       "wind": {
-        "speed": 5.7,
+        "speed": 6.2,
         "deg": 120
       },
-      "visibility": 16093,
       "sys": {
-        "message": 0.0332,
+        "message": 0.0029,
         "id": 2587,
         "sunset": 1470187058,
         "sunrise": 1470138798,
@@ -146,30 +138,30 @@
         "main": "Clouds"
       }],
       "main": {
-        "humidity": 62,
-        "pressure": 1018,
-        "temp_max": 36,
-        "temp_min": 32,
-        "temp": 33.82
+        "humidity": 59,
+        "pressure": 1016,
+        "temp_max": 35,
+        "temp_min": 31.11,
+        "temp": 33.25
       }
     },
     {
       "id": 5601538,
-      "dt": 1470160560,
+      "dt": 1470176160,
       "clouds": {"all": 1},
       "coord": {
         "lon": -117,
         "lat": 46.73
       },
       "wind": {
-        "gust": 10.3,
-        "speed": 6.7,
-        "deg": 290
+        "gust": 12.3,
+        "speed": 8.2,
+        "deg": 320
       },
       "visibility": 16093,
       "sys": {
-        "message": 0.0348,
-        "id": 2945,
+        "message": 0.0295,
+        "id": 923,
         "sunset": 1470194234,
         "sunrise": 1470141066,
         "type": 1,
@@ -183,11 +175,11 @@
         "main": "Clear"
       }],
       "main": {
-        "humidity": 33,
-        "pressure": 1017,
-        "temp_max": 27,
-        "temp_min": 23,
-        "temp": 25.12
+        "humidity": 16,
+        "pressure": 1013,
+        "temp_max": 31,
+        "temp_min": 26,
+        "temp": 28.46
       }
     }
   ]

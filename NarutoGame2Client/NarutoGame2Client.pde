@@ -81,6 +81,8 @@ PostOffice po;
 PlatformGroup platforms;
 Player player;
 Player player2;
+HealthBar playerHealth;
+HealthBar playerHealth2;
 Rasengan player1Rasengan;
 Rasengan player2Rasengan;
 PlatformCollider platformCollider = new PlatformCollider(0);
@@ -117,8 +119,9 @@ void setup() {
   // Load the background music and player
   minim = new Minim(this);
   bgMusic = minim.loadFile("video-game-land.wav"); 
-  bgMusic.loop();
-  
+//bgMusic.loop();
+ 
+ 
   // initialize weather
   cityList = new CityList();
   City ca = cityList.getNextCity();
@@ -147,6 +150,7 @@ void setup() {
 
   cityChangeEventGenerator.setIntervalMs(1000 * CITY_CHG_PERIODICITY_IN_SECONDS);
   
+  
   //Sets up and starts world
   world.start();
 }
@@ -163,7 +167,32 @@ void draw() {
     
     text("City: " + cityName + " Wind Direction/Speed: " + windDirection + "/" + windSpeed, .1 * width, height * .95);
   }
-  
+/*  
+  for(Player p : playerArray){
+    if (p.health < 25)
+    {  
+      fill(255, 0, 0);
+    }    
+    else if (p.health < 50)
+    {  
+      fill(255, 200, 0);
+    }  
+    else
+    {  
+      fill(0, 255, 0);
+    }
+    // Draw bar
+    noStroke();
+    // Get fraction 0->1 and multiply it by width of bar
+    float drawWidth = (p.health / p.MAX_HEALTH) * p.HEALTH_BAR_WIDTH;
+    rect(100, 100, drawWidth, 25);  
+     
+    // Outline
+    stroke(0);
+    noFill();  
+    rect(100, 100, p.HEALTH_BAR_WIDTH, 25);
+  }
+*/  
   world.draw();
 }
 
