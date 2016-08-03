@@ -371,8 +371,11 @@ class Player extends MassedBeing implements BeingVar {
     rasenganActive = val;
   }
   
-  void setHealth(float health){
+  void setHealth(float health){  
     this.health += health;
+    if(this.health < 0) {
+      this.health = 0;
+    }
   }
   
   float getHealth(){
